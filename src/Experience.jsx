@@ -8,13 +8,14 @@ import {
 	Sky,
 	shaderMaterial,
 } from "@react-three/drei";
+
 import { extend, useFrame } from "@react-three/fiber";
 import { Color } from "three";
 import { useRef } from "react";
-import { useControls } from "leva";
 
 import portalVertexShader from "./shaders/portal/vertex.glsl";
 import portalFragmentShader from "./shaders/portal/fragment.glsl";
+import { Perf } from "r3f-perf";
 
 const PortalMaterial = shaderMaterial(
 	{
@@ -39,12 +40,13 @@ export default function Experience() {
 	useFrame((state, delta) => {
 		portalMaterial.current.uTime += delta;
 	});
-	console.log(nodes.baked.geometry);
+	console.log(Stars);
 	return (
 		<>
+			<Perf position="top-left" />
 			<color args={["#030202"]} attach="background" />
-
 			<OrbitControls makeDefault />
+
 			<Center>
 				<mesh geometry={nodes.baked.geometry}>
 					<meshBasicMaterial map={bakedTexture} />
@@ -81,20 +83,14 @@ export default function Experience() {
 				/>
 			</Center>
 
-			<Sky
-				distance={450000}
-				sunPosition={[0, -1, 0]}
-				inclination={1}
-				azimuth={1}
-			/>
 			<Stars
-				radius={50}
+				radius={10}
 				depth={50}
 				count={5000}
 				factor={2}
 				saturation={1}
 				fade
-				speed={1}
+				speed={10}
 			/>
 		</>
 	);
