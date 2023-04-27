@@ -73,22 +73,31 @@ export default function Experience() {
 					<portalMaterial ref={portalMaterial} />
 				</mesh>
 
-				<Sky
-					distance={450000}
-					sunPosition={[0, -1, 0]}
-					inclination={1}
-					azimuth={1}
-				/>
-				<Stars
-					radius={Math.PI * 128}
-					depth={50}
-					count={2000}
-					factor={16}
-					saturation={10}
-					fade={true}
-					speed={2}
+				<Sparkles
+					size={6}
+					scale={[4, 2, 4]}
+					position-y={1}
+					speed={0.2}
+					count={40}
+					color={"#ab6227"}
 				/>
 			</Center>
+
+			<Sky
+				distance={450000}
+				sunPosition={[0, -1, 0]}
+				inclination={1}
+				azimuth={1}
+			/>
+			<Stars
+				radius={Math.PI * 128}
+				depth={50}
+				count={2000}
+				factor={16}
+				saturation={10}
+				fade={true}
+				speed={2}
+			/>
 		</>
 	);
 }
